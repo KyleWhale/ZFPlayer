@@ -197,10 +197,12 @@
 #pragma mark - update UI
 
 - (void)updateUI {
-    [self updateDate];
-    [self updateBattery];
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateDate];
+        [self updateBattery];
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    });
 }
 
 - (void)updateDate {
