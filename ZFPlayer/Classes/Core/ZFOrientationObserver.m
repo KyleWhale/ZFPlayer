@@ -123,13 +123,11 @@
 }
 
 - (void)addDeviceOrientationObserver {
-    if (self.allowOrientationRotation) {
-        self.activeDeviceObserver = YES;
-        if (![UIDevice currentDevice].generatesDeviceOrientationNotifications) {
-            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationChange) name:UIDeviceOrientationDidChangeNotification object:nil];
+    self.activeDeviceObserver = YES;
+    if (![UIDevice currentDevice].generatesDeviceOrientationNotifications) {
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationChange) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)removeDeviceOrientationObserver {
